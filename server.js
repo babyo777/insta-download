@@ -1,6 +1,6 @@
 const app = require("express")()
 const cors = require("cors")
-const instagram = require("../utils/insta")
+const instagram = require("./utils/insta")
 
 app.use(cors())
 
