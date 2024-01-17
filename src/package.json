@@ -13,9 +13,9 @@
     "nodemon": "^3.0.3"
   },
   "scripts": {
-    "test": "node ./__test__/test.js",
-    "dev": "nodemon ./src/server.js",
-    "start": "node ./src/server.js"
+    "test": "node ../__test__/test.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
