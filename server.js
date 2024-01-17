@@ -4,9 +4,8 @@ const instagram = require("./utils/insta")
 
 app.use(cors())
 
-app.get("/api/v1/:link",async(req,res)=>{
-    const url = req.params.link
-    console.log(url);
+app.get("/api/v1",async(req,res)=>{
+    const url = req.query.link
         try {
           const dataList = await instagram(url);
           res.json(dataList)
