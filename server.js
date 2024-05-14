@@ -8,14 +8,14 @@ app.get("/api/v1",async(req,res)=>{
     const url = req.query.link
         try {
           const dataList = await instagram(url);
-          res.json(dataList)
+          res.status(200).json(dataList)
         } catch (error) {
-          res.json(error.message)
+          res.status(402).json(error.message)
         }
 })
 
 app.use((req,res,next)=>{
-    res.send('s3x')
+    res.status(404).send('s3x')
 })
 
 app.listen(process.env.PORT ?? 3000,()=>{
