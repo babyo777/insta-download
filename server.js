@@ -10,7 +10,7 @@ app.get("/api/v1",async(req,res)=>{
           const dataList = await instagram(url);
           res.status(200).json(dataList)
         } catch (error) {
-          res.status(402).json(error.message)
+          res.status(403).json(error.message)
         }
 })
 
