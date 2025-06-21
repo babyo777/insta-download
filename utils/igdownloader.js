@@ -26,29 +26,34 @@ async function getLinks(link) {
     "X-Requested-With": "XMLHttpRequest",
   };
 
-  const res = await axios.post(
-    "https://v3.saveig.app/api/ajaxSearch",
-    formData,
-    { headers }
-  );
-  const $ = cheerio.load(res.data.data);
+  try {
+    const res = await axios.post(
+      "https://v3.saveig.app/api/ajaxSearch",
+      formData,
+      { headers }
+    );
+    const $ = cheerio.load(res.data.data);
 
-  const data = [];
+    const data = [];
 
-  $(".download-items").each(function () {
-    const thumbnail_link =
-      $(this).find(".download-items__thumb img").attr("data-src") ||
-      $(this).find(".download-items__thumb img").attr("src");
+    $(".download-items").each(function () {
+      const thumbnail_link =
+        $(this).find(".download-items__thumb img").attr("data-src") ||
+        $(this).find(".download-items__thumb img").attr("src");
 
-    const download_link = $(this).find(".download-items__btn a").attr("href");
+      const download_link = $(this).find(".download-items__btn a").attr("href");
 
-    data.push({
-      thumbnail_link,
-      download_link,
+      data.push({
+        thumbnail_link,
+        download_link,
+      });
     });
-  });
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
 }
 
 module.exports = getLinks;
