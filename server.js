@@ -6,6 +6,9 @@ app.use(cors());
 
 app.get("/api/v1", async (req, res) => {
   const url = req.query.link;
+  if (!url || !url.match(/^https?:\/\/(www\.)?instagram\.com\/.*/i)) {
+    return res.status(400).json({ error: 'Invalid Instagram URL' });
+  }
   try {
     const dataList = await instagram(url);
     res.status(200).json(dataList);
